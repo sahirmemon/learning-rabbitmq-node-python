@@ -15,8 +15,8 @@ router.get('/', function(req, res, next) {
       // Create a queue to send messages to
       var q = 'hello';
 
-      ch.assertQueue(q, {durable: false});
-      ch.sendToQueue(q, new Buffer(JSON.stringify({message:'LOL', action:'TOUCH'})));
+      ch.assertQueue('task_queue', {durable: true});
+      ch.sendToQueue(q, new Buffer("Hello World!........"), {persistent: true});
       console.log(" [x] Send 'Hello World!'");
 
       // Close the connection
